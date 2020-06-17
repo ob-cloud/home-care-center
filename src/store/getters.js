@@ -2,7 +2,8 @@ import {
   SELECTED_GOODS_COUNT,
   SELECTED_GOODS,
   SELECTED_GOODS_PRICE,
-  USER_SEX
+  USER_SEX,
+  ACCESS_TOKEN
 } from "./mutation-type";
 
 // 引入本地存储
@@ -60,5 +61,8 @@ export default {
     } else {
       return '未填写'
     }
+  },
+  [ACCESS_TOKEN](state) {
+    return state.userInfo ? state.userInfo.token : ''
   }
 }

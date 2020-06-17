@@ -15,7 +15,8 @@ import {
   INIT_USER_SHOPPING_ADDRESS,
   ADD_USER_SHOPPING_ADDRESS,
   DELETE_USER_SHOPPING_ADDRESS,
-  CHANGE_USER_SHOPPING_ADDRESS
+  CHANGE_USER_SHOPPING_ADDRESS,
+  ACCESS_TOKEN
 } from './mutation-type'
 import Vue from 'vue'
 import Cookies from "js-cookie";
@@ -174,6 +175,7 @@ export default {
     state.userInfo = userInfo;
     // 7.2 保存到本地缓存中
     setLocalStore('userInfo', state.userInfo);
+    setLocalStore(ACCESS_TOKEN, state.userInfo.token)
   },
   //  8.初始化获取用户信息
   [INIT_USER_INFO](state) {
@@ -254,6 +256,7 @@ export default {
     removeLocalStore('userInfo');
     removeLocalStore('shopCart');
     removeLocalStore('shippingAddress');
+    removeLocalStore(ACCESS_TOKEN);
   },
   //  16.初始化获取用户收货地址
   [INIT_USER_SHOPPING_ADDRESS](state) {

@@ -30,6 +30,9 @@ export const USER_INFO_BRITHDAY = 'USER_INFO_BRITHDAY';
 export const USER_INFO_SEX = 'USER_INFO_SEX';
 // 16.性别
 export const USER_SEX = 'USER_SEX';
+
+export const ACCESS_TOKEN = 'ACCESS_TOKEN'
+
 // 15.退出登录
 export const LOGIN_OUT = 'LOGIN_OUT';
 
