@@ -5,8 +5,8 @@
   <div id="addAddress">
     <van-nav-bar :title="$t('order.addLocation')"
                  left-arrow
-                 :fixed=true
-                 :border=true
+                 :fixed="true"
+                 :border="true"
                  @click-left="onClickLeft"></van-nav-bar>
     <van-address-edit :area-list="areaList"
                       show-postal
@@ -19,11 +19,10 @@
   </div>
 </template>
 
-<script type="text/javascript">
+<script>
 
-import { mapMutations, mapState } from 'vuex'
+import { mapMutations } from 'vuex'
 
-import { Toast } from 'vant'
 import areaList from './../../../../config/area.js'
 export default {
   data () {

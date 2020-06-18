@@ -117,6 +117,9 @@ import {
 } from 'vant';
 Vue.use(Switch);
 
+import { Form } from 'vant';
+Vue.use(Form);
+
 // 19.field输入框
 import {
   Field
@@ -199,3 +202,8 @@ import {
   Overlay
 } from 'vant';
 Vue.use(Overlay);
+
+// 上传
+import { Uploader } from 'vant';
+Vue.use(Uploader);
+

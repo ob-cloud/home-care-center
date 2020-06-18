@@ -46,6 +46,12 @@ const MyAddress = () => import('../views/order/children/MyAddress.vue');
 const AddAddress = () => import('../views/order/children/children/AddAddress.vue');
 const EditAddress = () => import('../views/order/children/children/EditAddress.vue');
 
+// 服务
+const Service = () => import('@/views/service/Service.vue')
+
+// 商店
+const Shop = () => import('@/views/shop/Shop.vue')
+
 // 注册登录
 const Login = () => import('../views/login/Login.vue');
 
@@ -117,6 +123,22 @@ const router = new Router({
         path: 'cart',
         name: 'cart',
         component: Cart,
+        meta: {
+          keepAlive: true
+        }
+      }, {
+        // 服务
+        path: 'service',
+        name: 'service',
+        component: Service,
+        meta: {
+          keepAlive: true
+        }
+      }, {
+        // 商店
+        path: 'shop',
+        name: 'shop',
+        component: Shop,
         meta: {
           keepAlive: true
         }

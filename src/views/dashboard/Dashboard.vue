@@ -4,7 +4,7 @@
       <!-- 给购物车的Tabbar加个ID 方便做加入购物车的小球动画 -->
       <van-tabbar-item v-for="(item,index) in tabbars" :key="index" :id="index==3?'buycar':''"
         @click="tab(index,item.name)" :info="item.name=='cart'?goodsNum:''">
-        <span :class="currIndex == index ? active:''">{{$t(item.title)}}</span>
+        <span :class="currIndex == index ? active:''">{{ item.title }}</span>
         <template slot="icon" slot-scope="props">
           <img :src="props.active ? item.active : item.normal">
         </template>
@@ -47,33 +47,33 @@ export default {
       tabbars: [
         {
           name: "home",
-          title: 'home.home',
+          title: '首页',
           normal: require("@/images/tabbar/home_default.png"),
           active: require("@/images/tabbar/home_selected.png")
         },
         {
-          name: "category",
-          title: 'home.category',
+          name: "service",
+          title: '服务',
           normal: require("@/images/tabbar/category_default.png"),
           active: require("@/images/tabbar/category_selected.png")
         },
         {
-          name: "eat",
-          title: 'home.eat',
+          name: "shop",
+          title: '商店',
           normal: require("@/images/tabbar/eat_default.png"),
           active: require("@/images/tabbar/eat_selected.png"),
         },
         {
 
           name: "cart",
-          title: 'home.cart',
+          title: '购物车',
           normal: require("@/images/tabbar/shoppingcart_default.png"),
           active: require("@/images/tabbar/shoppingcart_selected.png"),
           num: 5
         },
         {
           name: "mine",
-          title: 'home.mine',
+          title: '我的',
           normal: require("@/images/tabbar/mine_default.png"),
           active: require("@/images/tabbar/mine_selected.png")
         }
@@ -113,7 +113,9 @@ export default {
     tabbarSelected (item) {
       const mapType = {
         home: 0,
+        service: 1,
         category: 1,
+        shop: 2,
         eate: 2,
         cart: 3,
         mine: 4
