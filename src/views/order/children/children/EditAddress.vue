@@ -3,26 +3,17 @@
  -->
 <template>
   <div id="editAddress">
-    <van-nav-bar :title="$t('order.editLocation')"
-                 left-arrow
-                 :fixed=true
-                 :border=true
-                 @click-left="onClickLeft"></van-nav-bar>
-    <van-address-edit :area-list="areaList"
-                      show-postal
-                      show-delete
-                      show-set-default
-                      show-search-result
-                      :addressInfo="addressInfo"
-                      :search-result="searchResult"
-                      @save="onSave"
-                      @delete="onDelete"
-                      style="margin-top:3rem" />
+    <van-nav-bar :title="$t('order.editLocation')" left-arrow :fixed="true" :border="true" @click-left="onClickLeft">
+    </van-nav-bar>
+    <van-address-edit :area-list="areaList" show-postal show-delete show-set-default show-search-result
+                      :addressInfo="addressInfo" :search-result="searchResult" @save="onSave" @delete="onDelete"
+                      style="margin-top:3rem"
+    />
   </div>
 </template>
 
 <script type="text/javascript">
-import { mapMutations, mapState } from 'vuex'
+import { mapMutations } from 'vuex'
 import areaList from './../../../../config/area.js'
 
 export default {
