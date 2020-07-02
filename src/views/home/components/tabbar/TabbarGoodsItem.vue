@@ -17,28 +17,28 @@
       <!-- 全部 -->
       <van-tab>
         <div slot="title">
-          <span>{{$t(itemsTitle[0])}}</span>
+          <span>{{ $t(itemsTitle[0]) }}</span>
         </div>
         <ProduceItem :product_lists="tabbar_all_product_list" />
       </van-tab>
       <!-- 晚餐 -->
       <van-tab>
         <div slot="title">
-          <span>{{$t(itemsTitle[1])}}</span>
+          <span>{{ $t(itemsTitle[1]) }}</span>
         </div>
         <ProduceItem :product_lists="flash_sale_product_list" />
       </van-tab>
       <!-- 人气 -->
       <van-tab>
         <div slot="title">
-          <span>{{$t(itemsTitle[2])}}</span>
+          <span>{{ $t(itemsTitle[2]) }}</span>
         </div>
         <ProduceItem :product_lists="tabbar_all_product_list" />
       </van-tab>
       <!-- 心选 -->
       <van-tab>
         <div slot="title">
-          <span>{{$t(itemsTitle[3])}}</span>
+          <span>{{ $t(itemsTitle[3]) }}</span>
         </div>
         <ProduceItem :product_lists="flash_sale_product_list" />
       </van-tab>

@@ -1,15 +1,15 @@
-import Vue from 'vue'
+// import Vue from 'vue'
 import axios from 'axios'
 // import store from '@/store'
 import { VueAxios } from './axios'
 import { ACCESS_TOKEN } from '@/store/mutation-type'
-import { getReqBaseUrl, SERVER_PORT } from '@/config/env.config'
+import { getReqBaseUrl, REQUEST_TIMEOUT } from '@/config/env.config'
 import { getLocalStore } from '@/config/global'
 
 // 创建 axios 实例
 const service = axios.create({
   baseURL: getReqBaseUrl(), // api base_url
-  timeout: SERVER_PORT // 请求超时时间
+  timeout: REQUEST_TIMEOUT // 请求超时时间
 })
 
 const err = (error) => {

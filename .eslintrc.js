@@ -18,6 +18,8 @@ module.exports = {
     'vue/singleline-html-element-content-newline': 0,
     'vue/html-self-closing': 0,
     'vue/multiline-html-element-content-newline': 0,
+    "vue/mustache-interpolation-spacing": 0,
+    "no-unused-vars": 0,
     'comma-dangle': 0
   }
 }

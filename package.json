@@ -3,8 +3,10 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "serve": "vue-cli-service serve",
-        "build": "vue-cli-service build"
+      "serve": "vue-cli-service serve --mode native",
+      "build": "vue-cli-service build",
+      "build:dev": "vue-cli-service build --mode development",
+      "build:test": "vue-cli-service build --mode test"
     },
     "dependencies": {
         "@types/twix": "^0.6.38",
