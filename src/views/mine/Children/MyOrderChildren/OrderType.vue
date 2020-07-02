@@ -5,11 +5,9 @@
   <div id="orderType">
     <div v-if="orderTypeDataArray.length>0">
     </div>
-    <div v-else
-         class="noDataPlaceHold">
-      <img src="./../../../../images/mine/noData.jpeg"
-           alt="">
-      <span class="desc">{{$t('mine.feedbackTip')}}</span>
+    <div v-else class="noDataPlaceHold">
+      <img src="./../../../../images/mine/noData.jpeg" alt="">
+      <span class="desc">{{ $t('mine.feedbackTip') }}</span>
     </div>
   </div>
 </template>
@@ -17,7 +15,10 @@
 <script type="text/javascript">
 export default {
   props: {
-    orderTypeDataArray: Array
+    orderTypeDataArray: {
+      type: Array,
+      default: () => []
+    }
   },
   mounted () {
 

@@ -3,29 +3,19 @@
  -->
 <template>
   <div id="switchLanguage">
-    <van-nav-bar :title="$t('mine.switchLanguage')"
-                 :fixed=true
-                 :border=false
-                 @click-left="onClickLeft"
-                 left-arrow
-                 @click-right="onClickSave"
-                 :right-text="$t('mine.confirm')"
-                 style="height:2.5rem" />
+    <van-nav-bar
+      :title="$t('mine.switchLanguage')" :fixed="true" :border="false" @click-left="onClickLeft" left-arrow
+      @click-right="onClickSave" :right-text="$t('mine.confirm')" style="height:2.5rem"
+    />
 
     <div style="margin-top:3rem">
       <van-radio-group v-model="radio">
         <van-cell-group>
-          <van-cell :title="$t('mine.chinese')"
-                    clickable
-                    @click="radio = 'zh'">
-            <van-radio slot="right-icon"
-                       name="zh" />
+          <van-cell :title="$t('mine.chinese')" clickable @click="radio = 'zh'">
+            <van-radio slot="right-icon" name="zh" />
           </van-cell>
-          <van-cell :title="$t('mine.english')"
-                    clickable
-                    @click="radio = 'en'">
-            <van-radio slot="right-icon"
-                       name="en" />
+          <van-cell :title="$t('mine.english')" clickable @click="radio = 'en'">
+            <van-radio slot="right-icon" name="en" />
           </van-cell>
         </van-cell-group>
       </van-radio-group>
@@ -34,8 +24,8 @@
 </template>
 
 <script type="text/javascript">
-import { Toast } from 'vant'
-import { phoneCaptchaLogin } from './../../../serve/api/index.js'
+// import { Toast } from 'vant'
+// import { phoneCaptchaLogin } from './../../../serve/api/index.js'
 import Cookies from "js-cookie";
 // 设置vant的多语言
 import { Locale } from 'vant';

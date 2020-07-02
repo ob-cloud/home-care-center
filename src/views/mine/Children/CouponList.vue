@@ -3,17 +3,9 @@
  -->
 <template>
   <div id="couponList">
-    <van-nav-bar :title="$t('mine.myBills')"
-                 :fixed=true
-                 :border=false
-                 @click-left="onClickLeft"
-                 left-arrow
-                 style="height:2.5rem" />
+    <van-nav-bar :title="$t('mine.myBills')" :fixed="true" :border="false" @click-left="onClickLeft" left-arrow style="height:2.5rem" />
     <!--优惠券列表-->
-    <van-coupon-list :coupons="coupons"
-                     style="margin-top:3rem"
-                     :input-placeholder="$t('mine.persent')"
-                     @exchange="onExchange" />
+    <van-coupon-list :coupons="coupons" style="margin-top:3rem" :input-placeholder="$t('mine.persent')" @exchange="onExchange" />
 
   </div>
 

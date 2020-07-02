@@ -1,21 +1,16 @@
 <!--
- * @Description: 订单模块->添加地址
+  @Description: 订单模块->添加地址
  -->
+
 <template>
   <div id="addAddress">
-    <van-nav-bar :title="$t('order.addLocation')"
-                 left-arrow
-                 :fixed="true"
-                 :border="true"
-                 @click-left="onClickLeft"></van-nav-bar>
-    <van-address-edit :area-list="areaList"
-                      show-postal
-                      show-set-default
-                      show-search-result
-                      :search-result="searchResult"
-                      :save-button-text="$t('order.comfirmAndUse')"
-                      @save="onSave"
-                      style="margin-top:3rem" />
+    <van-nav-bar :title="$t('order.addLocation')" left-arrow :fixed="true" :border="true" @click-left="onClickLeft">
+    </van-nav-bar>
+    <van-address-edit
+      :area-list="areaList" show-postal show-set-default show-search-result
+      :search-result="searchResult" :save-button-text="$t('order.comfirmAndUse')" @save="onSave"
+      style="margin-top:3rem"
+    />
   </div>
 </template>
 

@@ -4,66 +4,50 @@
 <template>
   <div id="timeIntervalList">
     <!-- 时间选择器 -->
-    <van-popup v-model="showDateTimePopView"
-               round
-               lock-scroll
-               closeable
-               @closed="closePopView"
-               :style="{ height: '70%' }"
-               position="bottom">
+    <van-popup v-model="showDateTimePopView" round lock-scroll closeable @closed="closePopView" :style="{ height: '70%' }" position="bottom">
       <!-- 头部 -->
       <div class="itemHeader">
-        <span class="timeTitle">{{$t('order.selectArrivalTime')}}:</span>
+        <span class="timeTitle">{{ $t('order.selectArrivalTime') }}:</span>
       </div>
       <div class="listWrapper">
         <div class="leftContent">
-          <li class="categoryItem"
-              v-for="(date, index) in leftDateData"
-              :class="{selected: currentIndex === index}"
-              @click="clickLeftLi(index)"
-              :key="index">
-            {{date.time}}
+          <li class="categoryItem" v-for="(date, index) in leftDateData" :class="{selected: currentIndex === index}" @click="clickLeftLi(index)" :key="index">
+            {{ date.time }}
           </li>
         </div>
         <div class="rightContent">
           <!-- 今天 -->
-          <li v-for="(time,index) in timeList.today "
-              @click="clickTodayTimeList(index,time)"
-              :class="{checked:todayIndex === index}"
-              :key="index.id"
-              v-show="!currentIndex">{{time}}
-            <van-icon name="success"
-                      style="margin-left:40%"
-                      v-show="todayIndex === index" />
+          <li v-for="(time,index) in timeList.today " @click="clickTodayTimeList(index,time)"
+              :class="{checked:todayIndex === index}" :key="index.id" v-show="!currentIndex"
+          >
+            {{ time }}
+            <van-icon name="success" style="margin-left:40%" v-show="todayIndex === index" />
           </li>
           <!-- 明天 -->
-          <li v-for="(time,index) in timeList.tomorrow "
-              :key="index.id"
-              :class="{checked:tomorrowIndex === index}"
-              @click="clickTomorrowTimeList(index,time)"
-              v-show="currentIndex">{{time}}
-            <van-icon name="success"
-                      style="margin-left:40%"
-                      v-show="tomorrowIndex === index" />
+          <li
+            v-for="(time,index) in timeList.tomorrow " :key="index.id" :class="{checked:tomorrowIndex === index}"
+            @click="clickTomorrowTimeList(index,time)" v-show="currentIndex"
+          >
+            {{ time }}
+            <van-icon name="success" style="margin-left:40%" v-show="tomorrowIndex === index" />
           </li>
-
         </div>
       </div>
-      <div class="sureButton"
-           @click="sureCheckTime">
-        {{$t('order.comfirm')}}
+      <div class="sureButton" @click="sureCheckTime">
+        {{ $t('order.comfirm') }}
       </div>
     </van-popup>
   </div>
 </template>
-<script type="text/javascript">
 
-import PubSub from 'pubsub-js'
+<script>
+
+// import PubSub from 'pubsub-js'
 // 时间处理
 import Moment from 'moment'
 import 'moment/locale/zh-cn'
 
-import { mapState, mapMutations } from 'vuex'
+import { mapMutations } from 'vuex'
 // npm install --save @types/twix  moment的插件处理时间区间
 require('twix');
 export default {
@@ -82,7 +66,7 @@ export default {
   computed: {
     // 今天时间和明天时间
     leftDateData () {
-      let date = new Date();
+      // let date = new Date();
       let today = this.$t('order.today');
       let tomory = this.$t('order.tomorrow');
       let dateArray = [{ "time": today }, { "time": tomory }];
@@ -90,7 +74,7 @@ export default {
     },
     //  时间段
     timeList () {
-      let times = Moment(new Date()).format().split('T')[0];
+      // let times = Moment(new Date()).format().split('T')[0];
       // 当前时间
       var nowTime = Moment(new Date()).format('LT');
       // 把时间分割出来

@@ -4,36 +4,29 @@
 <template>
   <div id="vipGoodsItems">
     <!-- 商品内容列表 -->
-    <section class="r_list"
-             ref="r_list">
+    <section class="r_list" ref="r_list">
       <div>
         <ul>
-          <li v-for="(item,index) in vipCateDetail"
-              :key="index"
-              class="list ">
+          <li v-for="(item,index) in vipCateDetail" :key="index" class="list ">
             <div class="list_item flex">
               <p>
-                <img :src="item.small_image"
-                     alt="">
+                <img :src="item.small_image" alt="">
               </p>
               <div>
-                <p class="name">{{item.product_name}}</p>
-                <p class="des">{{item.spec}}</p>
-                <p class="originPrice">{{item.origin_price | moneyFormat}}</p>
-                <p class="price">{{item.price | moneyFormat}}
-                  <van-tag plain
-                           mark
-                           color="#5fa85f">{{$t('mine.openCard')}}</van-tag>
+                <p class="name">{{ item.product_name }}</p>
+                <p class="des">{{ item.spec }}</p>
+                <p class="originPrice">{{ item.origin_price | moneyFormat }}</p>
+                <p class="price">{{ item.price | moneyFormat }}
+                  <van-tag plain mark color="#5fa85f">{{ $t('mine.openCard') }}</van-tag>
                 </p>
                 <div class="iconCartWrapper">
-                  <svg-icon iconClass="car_disable"
-                            style="width:1.3rem;height:1.3rem" />
+                  <svg-icon iconClass="car_disable" style="width:1.3rem;height:1.3rem" />
                 </div>
               </div>
             </div>
           </li>
         </ul>
-        <div class="bottomTip">{{$t('mine.moreMessage')}}</div>
+        <div class="bottomTip">{{ $t('mine.moreMessage') }}</div>
       </div>
     </section>
   </div>
@@ -42,7 +35,10 @@
 <script type="text/javascript">
 export default {
   props: {
-    vipCateDetail: Array
+    vipCateDetail: {
+      type: Array,
+      default: () => []
+    }
   },
   data () {
     return {

@@ -1,50 +1,28 @@
-
 <template>
   <div id="order">
-    <van-nav-bar :title="$t('order.inputForm')"
-                 left-arrow
-                 :fixed=true
-                 @click-left="onClickLeft" />
+    <van-nav-bar :title="$t('order.inputForm')" left-arrow :fixed="true" @click-left="onClickLeft" />
     <!-- 选择收货地址 -->
-    <van-contact-card :type="address_type"
-                      :add-text="$t('order.location')"
-                      :name="address_name"
-                      :tel="address_phone"
-                      @click="chooseAddress"
-                      style="margin-top:3rem" />
+    <van-contact-card :type="address_type" :add-text="$t('order.location')" :name="address_name" :tel="address_phone" @click="chooseAddress" style="margin-top:3rem" />
     <van-cell-group>
-      <van-cell :title="$t('order.arrivalTime')"
-                :value="deliveryTime"
-                is-link
-                @click="showTimePickView">
+      <van-cell :title="$t('order.arrivalTime')" :value="deliveryTime" is-link @click="showTimePickView">
         <template slot="label">
-          <span class="custom-title">{{$t('order.outTimeGetMoney')}}</span>
+          <span class="custom-title">{{ $t('order.outTimeGetMoney') }}</span>
           <van-icon name="question-o" />
         </template>
       </van-cell>
       <!-- 送货时间区间选择器 -->
-      <TimeIntervalList ref="timeInterval"
-                        :showDateTimePopView="showDateTimePopView"
-                        @changeData="changeData(arguments)"></TimeIntervalList>
+      <TimeIntervalList ref="timeInterval" :showDateTimePopView="showDateTimePopView" @changeData="changeData(arguments)"></TimeIntervalList>
       <!-- 商品缩略图 -->
-      <div class="wrapper"
-           @click="goToGoodsList">
-        <div class="productImageWrapper"
-             ref="productImageWrapper">
-          <ul class="imageWrapper"
-              ref="imageWrapper">
-            <li ref="subWrapper"
-                style="display:inline"
-                v-for="(item,index) in goods"
-                :key="index">
-              <img :src="item.smallImage"
-                   alt="">
+      <div class="wrapper" @click="goToGoodsList">
+        <div class="productImageWrapper" ref="productImageWrapper">
+          <ul class="imageWrapper" ref="imageWrapper">
+            <li ref="subWrapper" style="display:inline" v-for="(item,index) in goods" :key="index">
+              <img :src="item.smallImage" alt="">
             </li>
           </ul>
         </div>
         <ul class="productCount">
-          <span>{{selectedCount}}
-          </span>
+          <span>{{ selectedCount }}</span>
           <van-icon name="arrow" />
         </ul>
       </div>
@@ -52,105 +30,65 @@
     <!-- 支付方式选择 -->
     <van-radio-group v-model="radio">
       <van-cell-group :title="$t('mine.payMethod')">
-        <van-cell clickable
-                  @click="radio = '1'">
+        <van-cell clickable @click="radio = '1'">
           <template slot="title">
-            <img src="./../../images/order/wx.png"
-                 alt=""
-                 width="25px"
-                 height="25px"
-                 style=" vertical-align: middle;padding-right:5px">
-            <span>{{$t('order.wechatPay')}}</span>
+            <img src="./../../images/order/wx.png" alt="" width="25px" height="25px" style=" vertical-align: middle;padding-right:5px">
+            <span>{{ $t('order.wechatPay') }}</span>
           </template>
-          <van-radio slot="right-icon"
-                     name="1"
-                     checked-color="#07c160" />
+          <van-radio slot="right-icon" name="1" checked-color="#07c160" />
         </van-cell>
-        <van-cell clickable
-                  @click="radio = '2'">
+        <van-cell clickable @click="radio = '2'">
           <template slot="title">
-            <img src="./../../images/order/zfb.png"
-                 alt=""
-                 width="25px"
-                 height="25px"
-                 style=" vertical-align: middle;padding-right:5px">
-            <span>{{$t('order.aliPay')}}</span>
+            <img src="./../../images/order/zfb.png" alt="" width="25px" height="25px" style=" vertical-align: middle;padding-right:5px">
+            <span>{{ $t('order.aliPay') }}</span>
           </template>
-          <van-radio slot="right-icon"
-                     name="2"
-                     checked-color="#07c160" />
+          <van-radio slot="right-icon" name="2" checked-color="#07c160" />
         </van-cell>
-        <van-cell clickable
-                  @click="radio = '3'">
+        <van-cell clickable @click="radio = '3'">
           <template slot="title">
-            <img src="./../../images/order/hb.png"
-                 alt=""
-                 width="25px"
-                 height="25px"
-                 style=" vertical-align: middle;padding-right:5px">
-            <span>{{$t('order.huabeiPay')}}</span>
+            <img src="./../../images/order/hb.png" alt="" width="25px" height="25px" style=" vertical-align: middle;padding-right:5px">
+            <span>{{ $t('order.huabeiPay') }}</span>
           </template>
-          <van-radio slot="right-icon"
-                     name="3"
-                     checked-color="#07c160" />
+          <van-radio slot="right-icon" name="3" checked-color="#07c160" />
         </van-cell>
       </van-cell-group>
     </van-radio-group>
 
     <!-- 优惠券及积分满减 -->
     <van-cell-group style="margin-top: 0.6rem">
-      <van-coupon-cell :coupons="coupons"
-                       :chosen-coupon="chosenCoupon"
-                       @click="showList = true" />
+      <van-coupon-cell :coupons="coupons" :chosen-coupon="chosenCoupon" @click="showList = true" />
 
       <van-cell>
         <!-- 优惠券列表 -->
-        <van-popup v-model="showList"
-                   position="bottom">
-          <van-coupon-list :coupons="coupons"
-                           :chosen-coupon="chosenCoupon"
-                           @change="onChange"
-                           @exchange="onExchange" />
+        <van-popup v-model="showList" position="bottom">
+          <van-coupon-list :coupons="coupons" :chosen-coupon="chosenCoupon" @change="onChange" @exchange="onExchange" />
         </van-popup>
-        <span slot="title">{{$t('order.use')}}{{integral}}{{$t('order.aliPay')}}<b>{{integralToprice | moneyFormat}}</b></span>
-        <van-switch v-model="checked"
-                    slot="right-icon"
-                    @input="onInput"
-                    active-color="#07c160" />
+        <span slot="title">{{ $t('order.use') }}{{ integral }}{{ $t('order.aliPay') }}<b>{{ integralToprice | moneyFormat }}</b></span>
+        <van-switch v-model="checked" slot="right-icon" @input="onInput" active-color="#07c160" />
       </van-cell>
     </van-cell-group>
     <!-- 备注 -->
     <van-cell-group style="margin-top: 0.6rem">
-      <van-field :label="$t('order.mark')"
-                 type="textarea"
-                 :placeholder="$t('order.tip')"
-                 rows="1"
-                 autosize
-                 is-link />
+      <van-field :label="$t('order.mark')" type="textarea" :placeholder="$t('order.tip')" rows="1" autosize is-link />
     </van-cell-group>
 
     <!-- 商品金额 -->
     <van-cell-group style="margin-top: 0.6rem">
       <van-cell :title="$t('order.totalMoney')">
-        <div class="money">{{(selectedTotalPrice/100) |moneyFormat }}</div>
+        <div class="money">{{ (selectedTotalPrice/100) |moneyFormat }}</div>
       </van-cell>
       <van-cell :title="$t('order.sendMoney')">
         <div class="money">0.00</div>
       </van-cell>
-      <van-cell :title="$t('order.point')"
-                v-show="isShowPreferential">
-        <div class="integralToMoney">-{{integralToprice | moneyFormat}}</div>
+      <van-cell :title="$t('order.point')" v-show="isShowPreferential">
+        <div class="integralToMoney">-{{ integralToprice | moneyFormat }}</div>
       </van-cell>
     </van-cell-group>
 
     <!-- 提交订单 -->
-    <van-submit-bar :price="actualPrice"
-                    :label="$t('order.pay')"
-                    :button-text="$t('order.sendForm')"
-                    @submit="onSubmit" />
+    <van-submit-bar :price="actualPrice" :label="$t('order.pay')" :button-text="$t('order.sendForm')" @submit="onSubmit" />
     <!-- 路由出口 -->
-    <transition name="router-slider"
-                mode="out-in">
+    <transition name="router-slider" mode="out-in">
       <router-view></router-view>
     </transition>
   </div>
@@ -158,9 +96,9 @@
 
 <script type="text/javascript">
 import BScroll from 'better-scroll'
-import { mapState, mapGetters, mapMutations } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 import { Toast, Dialog } from 'vant';
-import { getLocalStore } from './../../config/global.js'
+// import { getLocalStore } from './../../config/global.js'
 // 引入发布订阅
 import { CHOOSE_USER_ADDRESS } from '../../config/pubsub_type.js'
 import PubSub from 'pubsub-js'
@@ -176,7 +114,7 @@ export default {
       address_phone: null,           // 收货人电话
       address_id: null,              // 收货人地址ID
 
-      radio: '1',                    // 支付方式  
+      radio: '1',                    // 支付方式
       checked: false,                // 积分兑换开关
       isShowPreferential: false,     // 展示积分兑换
       integral: 800,                // 积分,
@@ -184,7 +122,7 @@ export default {
 
       deliveryTime: this.$t('order.deliveryTime'),
       showDateTimePopView: false,
-      coupons: [{                  // 优惠券信息  
+      coupons: [{                  // 优惠券信息
         available: 1,
         condition: this.$t('mine.condition'),
         reason: '',
@@ -194,7 +132,7 @@ export default {
         endAt: 1614592000,
         valueDesc: '1.5',
         unitDesc: '元'
-      }, {                  // 优惠券信息     
+      }, {                  // 优惠券信息
         available: 1,
         condition: this.$t('mine.condition'),
         reason: '',
@@ -237,6 +175,7 @@ export default {
       if (this.integral > 0) {
         return (this.integral / 100);
       }
+      return 0
     },
   },
   mounted () {
@@ -303,7 +242,7 @@ export default {
       }
     },
     // 4.switch开关
-    onInput (checked) {
+    onInput () {
       let discountsPrice = this.integralToprice * 100;
       // 4.1 判断积分使用条件是否满足
       if (discountsPrice > this.selectedTotalPrice) {
@@ -330,7 +269,7 @@ export default {
       this.chosenCoupon = index;
     },
     // 优惠券兑换
-    onExchange (code) {
+    onExchange (coupon) {
       this.coupons.push(coupon);
     },
     // 显示时间选择器

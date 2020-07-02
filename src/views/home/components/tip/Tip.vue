@@ -4,24 +4,20 @@
 <template>
   <div id="tip">
     <div class="tipBox">
-      <img src="../../../../images/icon/transport.png"
-           alt="">
-      <span class="tipText">{{$t('goodsDetail.quickTime')}}</span>
+      <img src="../../../../images/icon/transport.png" alt="">
+      <span class="tipText">{{ $t('goodsDetail.quickTime') }}</span>
     </div>
     <div class="tipBox">
-      <img src="../../../../images/icon/money.png"
-           alt="">
-      <span class="tipText">{{$t('common.distributionTip')}}</span>
+      <img src="../../../../images/icon/money.png" alt="">
+      <span class="tipText">{{ $t('common.distributionTip') }}</span>
     </div>
 
     <div class="tipBox">
-      <img src="../../../../images/icon/seal.png"
-           alt="">
-      <span class="tipText">{{$t('common.easeBack')}}</span>
+      <img src="../../../../images/icon/seal.png" alt="">
+      <span class="tipText">{{ $t('common.easeBack') }}</span>
     </div>
     <div @click="goToVip">
-      <img class="adImg"
-           :src="home_ad">
+      <img class="adImg" :src="home_ad">
     </div>
   </div>
 </template>

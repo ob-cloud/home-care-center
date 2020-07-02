@@ -3,48 +3,36 @@
  -->
 <template>
   <div id="myOrder">
-    <van-nav-bar :title=" $t('mine.myOrders')"
-                 :border=false
-                 :fixed="true"
-                 @click-left="onClickLeft"
-                 left-arrow
-                 style="height:2.5rem" />
-    <van-tabs v-model="active"
-              animated
-              swipeable
-              sticky
-              :border="false"
-              :offset-top="47"
-              ref="tabs"
-              type="line"
-              color="#28BE57"
-              title-active-color="#28BE57"
-              animated:yes>
+    <van-nav-bar :title=" $t('mine.myOrders')" :border="false" :fixed="true" @click-left="onClickLeft" left-arrow style="height:2.5rem" />
+    <van-tabs
+      v-model="active" animated swipeable sticky :border="false" :offset-top="47" ref="tabs" type="line"
+      color="#28BE57" title-active-color="#28BE57" animated:yes
+    >
       <!-- 全部 -->
       <van-tab>
         <div slot="title">
-          <span>{{itemsTitle[0]}}</span>
+          <span>{{ itemsTitle[0] }}</span>
         </div>
         <OrderType :orderTypeDataArray="typeArray" />
       </van-tab>
       <!-- 待支付 -->
       <van-tab>
         <div slot="title">
-          <span>{{itemsTitle[1]}}</span>
+          <span>{{ itemsTitle[1] }}</span>
         </div>
         <OrderType :orderTypeDataArray="typeArray" />
       </van-tab>
       <!-- 待收货 -->
       <van-tab>
         <div slot="title">
-          <span>{{itemsTitle[2]}}</span>
+          <span>{{ itemsTitle[2] }}</span>
         </div>
         <OrderType :orderTypeDataArray="typeArray" />
       </van-tab>
       <!-- 待评价-->
       <van-tab>
         <div slot="title">
-          <span>{{itemsTitle[3]}}</span>
+          <span>{{ itemsTitle[3] }}</span>
         </div>
         <OrderType :orderTypeDataArray="typeArray" />
       </van-tab>

@@ -1,92 +1,71 @@
 <template>
-  <div id="myVip"
-       ref="myVip">
+  <div id="myVip" ref="myVip">
     <div v-if="!isShowLoading">
-      <van-nav-bar :title="$t('mine.greenCard')"
-                   :border=false
-                   :fixed="true"
-                   @click-left="onClickLeft"
-                   left-arrow
-                   style="height:2.5rem" />
+      <van-nav-bar :title="$t('mine.greenCard')" :border="false" :fixed="true" @click-left="onClickLeft" left-arrow style="height:2.5rem" />
       <div class="vipHeader">
-        <img src="./../../../images/mine/vip.png"
-             alt="">
+        <img src="./../../../images/mine/vip.png" alt="">
       </div>
       <div class="vipPrivilege">
-        <p class="title">{{$t('mine.greenCardPower')}}</p>
-        <van-grid :border=false>
-          <van-grid-item icon="vip-card-o"
-                         :text="$t('mine.cardTip1')" />
-          <van-grid-item icon="discount"
-                         :text="$t('mine.cardTip2')" />
-          <van-grid-item icon="gem-o"
-                         :text="$t('mine.cardTip3')" />
-          <van-grid-item icon="more-o"
-                         :text="$t('mine.cardTip4')" />
+        <p class="title">{{ $t('mine.greenCardPower') }}</p>
+        <van-grid :border="false">
+          <van-grid-item icon="vip-card-o" :text="$t('mine.cardTip1')" />
+          <van-grid-item icon="discount" :text="$t('mine.cardTip2')" />
+          <van-grid-item icon="gem-o" :text="$t('mine.cardTip3')" />
+          <van-grid-item icon="more-o" :text="$t('mine.cardTip4')" />
         </van-grid>
-        <div class="becomVipBtn"
-             @click="goToPayPage">{{$t('mine.fiftypecert')}}</div>
+        <div class="becomVipBtn" @click="goToPayPage">{{ $t('mine.fiftypecert') }}</div>
       </div>
       <!-- 第1部分 -->
       <div class="coupons">
         <!--今日专享券 -->
-        <span class="number">1</span><span class="desc">{{$t('mine.cardRecoamnd')}}</span>
-        <p class="todayCouns">{{$t('mine.TodayExclusivecoupon')}}<i>{{$t('mine.everyUpadate')}}</i></p>
+        <span class="number">1</span><span class="desc">{{ $t('mine.cardRecoamnd') }}</span>
+        <p class="todayCouns">{{ $t('mine.TodayExclusivecoupon') }}<i>{{ $t('mine.everyUpadate') }}</i></p>
         <div class="quanBox">
-          <div class="quan"
-               v-for="(item,index) in todayTicket"
-               :key="item.id"
-               @click="getCoupons">
-            <div class="money"><i>¥</i>{{item.money}}</div>
-            <div class="couponsConditions">{{$t('mine.to')}}{{item.pay_min}}{{$t('mine.toUse')}}</div>
-            <div class="couponsScope">{{item.description}}</div>
+          <div class="quan" v-for="(item) in todayTicket" :key="item.id" @click="getCoupons">
+            <div class="money"><i>¥</i>{{ item.money }}</div>
+            <div class="couponsConditions">{{ $t('mine.to') }}{{ item.pay_min }}{{ $t('mine.toUse') }}</div>
+            <div class="couponsScope">{{ item.description }}</div>
             <div class="getCopons">
-              {{$t('mine.immeatallyGet')}}
+              {{ $t('mine.immeatallyGet') }}
             </div>
           </div>
         </div>
         <!--本周专享券-->
-        <p class="todayCouns">{{$t('mine.weekBill')}}</p>
+        <p class="todayCouns">{{ $t('mine.weekBill') }}</p>
         <div class="quanBox">
-          <div class="quan"
-               v-for="(item,index) in weekTicket"
-               :key="item.id"
-               @click="getCoupons">
-            <div class="money"><i>¥</i>{{item.money}}</div>
-            <div class="couponsConditions">{{$t('mine.to')}}{{item.pay_min}}{{$t('mine.toUse')}}</div>
-            <div class="couponsScope">{{item.description}}</div>
+          <div class="quan" v-for="(item) in weekTicket" :key="item.id" @click="getCoupons">
+            <div class="money"><i>¥</i>{{ item.money }}</div>
+            <div class="couponsConditions">{{ $t('mine.to') }}{{ item.pay_min }}{{ $t('mine.toUse') }}</div>
+            <div class="couponsScope">{{ item.description }}</div>
             <div class="getCopons">
-              {{$t('mine.immeatallyGet')}}
+              {{ $t('mine.immeatallyGet') }}
             </div>
           </div>
         </div>
       </div>
       <!-- 第2部分 -->
       <div class="coupons">
-        <span class="number">2</span><span class="desc">{{$t('mine.billTip')}}</span>
+        <span class="number">2</span><span class="desc">{{ $t('mine.billTip') }}</span>
         <div class="integralBox">
           <div class="leftBox">
-            <div class="leftBoxTitle">{{$t('mine.currentGoods')}}</div>
-            <div class="leftBoxSubTitle">{{$t('mine.cardBack')}}<i>{{$t('mine.onece')}}</i></div>
+            <div class="leftBoxTitle">{{ $t('mine.currentGoods') }}</div>
+            <div class="leftBoxSubTitle">{{ $t('mine.cardBack') }}<i>{{ $t('mine.onece') }}</i></div>
           </div>
           <div class="rightBox">
-            <div class="rightBoxTitle">{{$t('mine.cardShop')}}</div>
-            <div class="rightBoxSubTitle">{{$t('mine.cardBack')}}<i>{{$t('mine.twice')}}</i></div>
+            <div class="rightBoxTitle">{{ $t('mine.cardShop') }}</div>
+            <div class="rightBoxSubTitle">{{ $t('mine.cardBack') }}<i>{{ $t('mine.twice') }}</i></div>
             <div class="line"></div>
-            <img src="./../../../images/mine/rockets.png"
-                 alt="">
+            <img src="./../../../images/mine/rockets.png" alt="">
           </div>
         </div>
-        <div class="integralToFast"
-             @click="goToPayPage">{{$t('mine.cardSpecialTip')}}</div>
+        <div class="integralToFast" @click="goToPayPage">{{ $t('mine.cardSpecialTip') }}</div>
       </div>
       <!-- 第3部分 -->
       <div class="coupons">
-        <span class="number">3</span><span class="desc">{{$t('mine.cardSpecial')}}</span>
+        <span class="number">3</span><span class="desc">{{ $t('mine.cardSpecial') }}</span>
         <!-- 可横向滑动的菜单 -->
         <van-sticky :offset-top="40">
-          <VipMenuTitleScroll :menuTitlesArray="cate"
-                              @menuTitleClick="menuTitleClick" />
+          <VipMenuTitleScroll :menuTitlesArray="cate" @menuTitleClick="menuTitleClick" />
         </van-sticky>
         <!-- Vip商品列表 -->
         <VipGoodsItems :vipCateDetail="cateDetail" />
@@ -94,15 +73,13 @@
     </div>
     <!-- 底部按钮 -->
     <transition name="fade">
-      <div class="bottomJoinVip"
-           v-show="isShowBottomBtn"
-           transiton="fade">
+      <div class="bottomJoinVip" v-show="isShowBottomBtn" transiton="fade">
         <div class="bottomDesc">
-          <span class="yearCart">{{$t('mine.yearCard')}}</span><i>{{$t('mine.cardPrisea')}}</i><span class="originPrice">{{$t('mine.cardPriseb')}}</span>
+          <span class="yearCart">{{ $t('mine.yearCard') }}</span><i>{{ $t('mine.cardPrisea') }}</i>
+          <span class="originPrice">{{ $t('mine.cardPriseb') }}</span>
         </div>
-        <div class="joinVip"
-             @click="goToPayPage">
-          {{$t('mine.openCards')}}
+        <div class="joinVip" @click="goToPayPage">
+          {{ $t('mine.openCards') }}
         </div>
       </div>
     </transition>
@@ -196,7 +173,7 @@ export default {
       }
     },
     // 处理子组件VipMenuTitleScroll传递的事件
-    menuTitleClick (index) {
+    menuTitleClick () {
 
     }
   }

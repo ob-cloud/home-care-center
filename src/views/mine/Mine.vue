@@ -3,43 +3,26 @@
  -->
 <template>
   <div id="mine">
-    <van-nav-bar :title="$t('mine.title')"
-                 :fixed=true
-                 :border=false
-                 style="height:2.5rem" />
+    <van-nav-bar :title="$t('mine.title')" :fixed="true" :border="false" style="height:2.5rem" />
     <van-cell-group style="margin-top:2.4rem">
-      <van-cell style="background-color: #3bba63;color:#FFF;"
-                label-class="labelClass"
-                is-link
-                center>
+      <van-cell style="background-color: #3bba63;color:#FFF;" label-class="labelClass" is-link center>
         <template slot="title">
           <!-- 已登录状态 -->
-          <div class="personMsg"
-               v-if="userInfo.token"
-               @click="goToPage('userCenter')">
-            <img class="iconImage"
-                 :src="user_image.login_icon"
-                 alt="">
-            <div class="sex"
-                 v-if="userInfo.sex">
-              <img :src="userInfo.sex=='1'?user_image.female:user_image.male"
-                   alt="">
+          <div class="personMsg" v-if="userInfo.token" @click="goToPage('userCenter')">
+            <img class="iconImage" :src="user_image.login_icon" alt="">
+            <div class="sex" v-if="userInfo.sex">
+              <img :src="userInfo.sex=='1'?user_image.female:user_image.male" alt="">
             </div>
-            <div class="personInfo"
-                 v-if="userInfo.token">
-              <span>{{userInfo.user_name}}</span>
-              <span>{{$t('mine.phone')}}：{{phoneNumber}}</span>
+            <div class="personInfo" v-if="userInfo.token">
+              <span>{{ userInfo.user_name }}</span>
+              <span>{{ $t('mine.phone') }}：{{ phoneNumber }}</span>
             </div>
           </div>
           <!-- 未登录状态 -->
-          <div class="personMsg"
-               v-if="!userInfo.token">
-            <img class="iconImage"
-                 :src="user_image.noLogin_icon"
-                 alt="">
-            <div class="personInfo"
-                 v-if="!userInfo.token">
-              <div @click="goToPage('login')">{{$t('mine.login')}}</div>
+          <div class="personMsg" v-if="!userInfo.token">
+            <img class="iconImage" :src="user_image.noLogin_icon" alt="">
+            <div class="personInfo" v-if="!userInfo.token">
+              <div @click="goToPage('login')">{{ $t('mine.login') }}</div>
             </div>
           </div>
         </template>
@@ -47,65 +30,37 @@
     </van-cell-group>
     <!-- 订单相关-->
     <van-cell-group>
-      <van-cell :title="$t('mine.myOrder')"
-                icon="label"
-                :value="$t('mine.allOrder')"
-                is-link
-                @click="goTomyOrder(-1)">
+      <van-cell :title="$t('mine.myOrder')" icon="label" :value="$t('mine.allOrder')" is-link @click="goTomyOrder(-1)">
       </van-cell>
-      <van-grid :border=false>
-        <van-grid-item v-for="(order,index) in orderData"
-                       :key="index"
-                       :icon="order.icon"
-                       :text="$t(order.title)"
-                       @click="goTomyOrder(index)" />
+      <van-grid :border="false">
+        <van-grid-item v-for="(order,index) in orderData" :key="index" :icon="order.icon" :text="$t(order.title)" @click="goTomyOrder(index)" />
       </van-grid>
     </van-cell-group>
     <van-cell-group style="margin-top:0.4rem">
-      <van-cell :title="$t('mine.myBill')"
-                icon="gold-coin"
-                :value="userInfo.token?'2':''"
-                @click="goToPage('couponList')"
-                is-link />
-      <van-cell :title="$t('mine.myLocation')"
-                icon="todo-list"
-                is-link
-                @click="goToPage('myAddress')" />
+      <van-cell :title="$t('mine.myBill')" icon="gold-coin" :value="userInfo.token?'2':''" @click="goToPage('couponList')" is-link />
+      <van-cell :title="$t('mine.myLocation')" icon="todo-list" is-link @click="goToPage('myAddress')" />
     </van-cell-group>
 
     <van-cell-group style="margin-top:0.4rem">
-      <van-cell is-link
-                icon="vip-card"
-                @click="goToPage('myVip')">
+      <van-cell is-link icon="vip-card" @click="goToPage('myVip')">
         <template slot="title">
-          <span class="custom-title">{{$t('mine.myCar')}}</span>
-          <van-tag type="danger"
-                   :round=true>NEW</van-tag>
+          <span class="custom-title">{{ $t('mine.myCar') }}</span>
+          <van-tag type="danger" :round="true">NEW</van-tag>
         </template>
       </van-cell>
     </van-cell-group>
     <van-cell-group style="margin-top:0.4rem">
       <!-- 联系客服 -->
-      <van-cell :title="$t('mine.servier')"
-                icon="phone"
-                :value="$t('mine.servierTime')"
-                is-link />
+      <van-cell :title="$t('mine.servier')" icon="phone" :value="$t('mine.servierTime')" is-link />
       <!-- 意见反馈 -->
-      <van-cell :title="$t('mine.feedback')"
-                icon="comment-circle"
-                is-link
-                @click="onFeedBack" />
+      <van-cell :title="$t('mine.feedback')" icon="comment-circle" is-link @click="onFeedBack" />
       <!-- 语言切换 -->
-      <van-cell :title="$t('mine.switchLanguage')"
-                icon="clock"
-                @click="onSwitchLanguage"
-                is-link />
+      <van-cell :title="$t('mine.switchLanguage')" icon="clock" @click="onSwitchLanguage" is-link />
     </van-cell-group>
 
-    <div class="version">{{$t('mine.version')}}{{version}}</div>
+    <div class="version">{{ $t('mine.version') }}{{ version }}</div>
     <!--路由的出口-->
-    <transition name="router-slider"
-                mode="out-in">
+    <transition name="router-slider" mode="out-in">
       <router-view></router-view>
     </transition>
   </div>

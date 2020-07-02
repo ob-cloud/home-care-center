@@ -1,39 +1,33 @@
 <!--
  * @Description: 订单->订单商品详情
  -->
- <template>
+<template>
   <div id="orderGoodsList">
-    <van-nav-bar :title="$t('order.goodsList')"
-                 left-arrow
-                 :fixed=true
-                 @click-left="onClickLeft" />
+    <van-nav-bar :title="$t('order.goodsList')" left-arrow :fixed="true" @click-left="onClickLeft" />
     <div class="listitle">
-      <span>{{$t('order.goods')}}</span>
-      <span class="total">{{selectedCount}}</span>
+      <span>{{ $t('order.goods') }}</span>
+      <span class="total">{{ selectedCount }}</span>
     </div>
     <ul>
-      <li class="goodsList"
-          v-for="(item,index) in
-          goods"
-          :key=index>
+      <li class="goodsList" v-for="(item,index) in
+        goods" :key="index"
+      >
         <div class="listItem">
-          <img :src="item.smallImage"
-               alt="">
+          <img :src="item.smallImage" alt="">
         </div>
         <div class="textDetail">
-          <p class="name">{{item.name}}</p>
-          <span class="subParam">{{$t('order.sigalPrice')}}{{item.price | moneyFormat}}</span>
-          <span class="subParam">{{$t('order.numbers')}}{{item.num}}</span>
+          <p class="name">{{ item.name }}</p>
+          <span class="subParam">{{ $t('order.sigalPrice') }}{{ item.price | moneyFormat }}</span>
+          <span class="subParam">{{ $t('order.numbers') }}{{ item.num }}</span>
         </div>
-        <div class="goodPrice">{{item.price*item.num | moneyFormat}}</div>
+        <div class="goodPrice">{{ item.price*item.num | moneyFormat }}</div>
       </li>
     </ul>
   </div>
 </template>
 
-<script type="text/javascript">
-
-import { mapState, mapGetters } from 'vuex'
+<script>
+import { mapGetters } from 'vuex'
 
 export default {
   computed: {

@@ -1,85 +1,46 @@
 <!--
- * @Description: 我的->个人资料
+  @Description: 我的-> 个人资料
  -->
 <template>
   <div id="userCenter">
-    <van-nav-bar :title="$t('mine.personalInfo')"
-                 :fixed=true
-                 :border=false
-                 @click-left="onClickLeft"
-                 left-arrow
-                 style="height:2.5rem" />
+    <van-nav-bar :title="$t('mine.personalInfo')" :fixed="true" :border="false" @click-left="onClickLeft" left-arrow style="height:2.5rem" />
     <div class="icon">
-      <span class="title">{{$t('mine.head')}}</span>
-      <img src="./../../../images/mine/defaultImg.jpeg"
-           alt="">
+      <span class="title">{{ $t('mine.head') }} </span>
+      <img src="./../../../images/mine/defaultImg.jpeg" alt="">
     </div>
     <van-cell-group>
-      <van-cell :title="$t('mine.user_name')"
-                is-link
-                :value="userInfo.user_name"
-                @click="goToChangeNickName" />
-      <van-cell :title="$t('mine.userSex')"
-                is-link
-                :value="userSex"
-                @click="onChangeSex" />
-      <van-cell :title="$t('mine.Brithday')"
-                is-link
-                @click="selectBrithday"
-                :value="userInfo.brithday?userInfo.brithday:$t('mine.noInput')" />
-      <van-cell :title="$t('mine.phoneNumber')"
-                :value="phoneNumber" />
+      <van-cell :title="$t('mine.user_name')" is-link :value="userInfo.user_name" @click="goToChangeNickName" />
+      <van-cell :title="$t('mine.userSex')" is-link :value="userSex" @click="onChangeSex" />
+      <van-cell :title="$t('mine.Brithday')" is-link @click="selectBrithday" :value="userInfo.brithday?userInfo.brithday:$t('mine.noInput')" />
+      <van-cell :title="$t('mine.phoneNumber')" :value="phoneNumber" />
     </van-cell-group>
 
-    <van-button size=large
-                style="margin-top:1rem"
-                @click="logOut">{{$t('mine.logout')}}</van-button>
+    <van-button size="large" style="margin-top:1rem" @click="logOut">{{ $t('mine.logout') }} </van-button>
     <!-- 时间选择器 -->
-    <van-popup v-model="showDateTimePopView"
-               round
-               position="bottom">
-      <van-datetime-picker v-model="currentDate"
-                           type="date"
-                           @confirm="confirm"
-                           @cancel="cancel"
-                           :formatter="formatter"
-                           :max-date="maxDate"
-                           :min-date="minDate" />
+    <van-popup v-model="showDateTimePopView" round position="bottom">
+      <van-datetime-picker v-model="currentDate" type="date" @confirm="confirm" @cancel="cancel" :formatter="formatter" :max-date="maxDate" :min-date="minDate" />
     </van-popup>
     <!-- 性别选择器 -->
-    <van-popup v-model="showChooseSex"
-               position="bottom"
-               :style="{ height: '25%' }">
+    <van-popup v-model="showChooseSex" position="bottom" :style="{ height: '25%' }">
       <van-radio-group v-model="userInfo.sex">
-        <van-cell-group style="margin-top:2rem"
-                        @click="clickCell(radio)">
-          <van-cell :title="$t('mine.woman')"
-                    clickable
-                    @click="radio = '1'">
-            <van-radio slot="right-icon"
-                       name="1"
-                       checked-color="#07c160" />
+        <van-cell-group style="margin-top:2rem" @click="clickCell(radio)">
+          <van-cell :title="$t('mine.woman')" clickable @click="radio = '1'">
+            <van-radio slot="right-icon" name="1" checked-color="#07c160" />
           </van-cell>
-          <van-cell :title="$t('mine.man')"
-                    clickable
-                    @click="radio = '2'">
-            <van-radio slot="right-icon"
-                       name="2"
-                       checked-color="#07c160" />
+          <van-cell :title="$t('mine.man')" clickable @click="radio = '2'">
+            <van-radio slot="right-icon" name="2" checked-color="#07c160" />
           </van-cell>
         </van-cell-group>
       </van-radio-group>
     </van-popup>
     <!--路由的出口-->
-    <transition name="router-slider"
-                mode="out-in">
+    <transition name="router-slider" mode="out-in">
       <router-view></router-view>
     </transition>
   </div>
-
 </template>
-<script type="text/javascript">
 
+<script type="text/javascript">
 import { mapState, mapMutations, mapGetters } from 'vuex'
 import { Toast, Dialog } from 'vant'
 

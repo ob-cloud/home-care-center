@@ -4,16 +4,13 @@
 <template>
   <div id="horizontalScroll">
     <!-- 水平滑动 -->
-    <div class="menuTitleWrapper"
-         ref="menuTitleWrapper">
+    <div class="menuTitleWrapper" ref="menuTitleWrapper">
       <ul ref="menuTitleUlContent">
         <li class="menuTitles"
-            :class="{selected:currentSubTitle === index}"
-            v-for="(item,index) in menuTitlesArray"
-            :key="item.id"
-            ref="menuTitles"
-            @click="menuTitleClick(index)">
-          {{item.name}}
+            :class="{selected:currentSubTitle === index}" v-for="(item,index) in menuTitlesArray"
+            :key="item.id" ref="menuTitles" @click="menuTitleClick(index)"
+        >
+          {{ item.name }}
         </li>
       </ul>
     </div>
@@ -25,7 +22,10 @@ import BScroll from 'better-scroll'
 export default {
   props: {
     // 接受父组件传递的数据
-    menuTitlesArray: Array
+    menuTitlesArray: {
+      type: Array,
+      default: () => []
+    }
   },
   mounted () {
     this.$nextTick(() => {

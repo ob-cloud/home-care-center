@@ -3,114 +3,70 @@
  -->
 <template>
   <div id="vipPay">
-    <van-nav-bar :title="$t('mine.openCard')"
-                 :border=false
-                 :fixed="true"
-                 @click-left="onClickLeft"
-                 left-arrow
-                 style="height:2.5rem" />
+    <van-nav-bar :title="$t('mine.openCard')" :border="false" :fixed="true" @click-left="onClickLeft" left-arrow style="height:2.5rem" />
     <div class="userInfoBox">
-      <img class="iconImage"
-           :src="user_image.login_icon"
-           alt="">
+      <img class="iconImage" :src="user_image.login_icon" alt="">
       <div class="personInfo">
-        <span>{{userInfo.user_name}}</span>
-        <i>{{vipTipMsg}}</i>
+        <span>{{ userInfo.user_name }}</span>
+        <i>{{ vipTipMsg }}</i>
       </div>
     </div>
     <div class="vipDesc">
-      <p>{{$t('mine.recomend')}}</p>
-      <van-grid :column-num="3"
-                :border=false>
-        <van-grid-item icon="vip-card-o"
-                       :text="$t('mine.cardTip1')"
-                       style="color:#60b86a" />
-        <van-grid-item icon="discount"
-                       :text="$t('mine.cardTip2')"
-                       style="color:#60b86a" />
-        <van-grid-item icon="gem-o"
-                       :text="$t('mine.cardTip3')"
-                       style="color:#60b86a" />
+      <p>{{ $t('mine.recomend') }}</p>
+      <van-grid :column-num="3" :border="false">
+        <van-grid-item icon="vip-card-o" :text="$t('mine.cardTip1')" style="color:#60b86a" />
+        <van-grid-item icon="discount" :text="$t('mine.cardTip2')" style="color:#60b86a" />
+        <van-grid-item icon="gem-o" :text="$t('mine.cardTip3')" style="color:#60b86a" />
       </van-grid>
     </div>
     <!-- 会员类型 -->
     <div class="vipType">
-      <div class="chooseType"
-           :class="{selected:checked,normal:!checked}"
-           @click="chooseClick(1)">
-        <i>{{$t('mine.vipType')}}</i>
-        <span class="title">{{$t('mine.vipTime')}}</span>
-        <a href="javaScript:;"
-           class="cartCheckBox"
-           :checked="checked"></a>
-        <p>{{$t('mine.vipRecommend')}}</p>
-        <div class="price">{{$t('mine.prise1')}}</div>
-        <span class="originPrice">{{$t('mine.prise2')}}</span>
+      <div class="chooseType" :class="{selected:checked,normal:!checked}" @click="chooseClick(1)">
+        <i>{{ $t('mine.vipType') }}</i>
+        <span class="title">{{ $t('mine.vipTime') }}</span>
+        <a href="javaScript:;" class="cartCheckBox" :checked="checked"></a>
+        <p>{{ $t('mine.vipRecommend') }}</p>
+        <div class="price">{{ $t('mine.prise1') }}</div>
+        <span class="originPrice">{{ $t('mine.prise2') }}</span>
       </div>
-      <div class="chooseType"
-           :class="{selected:secondChecked,normal:!secondChecked}"
-           @click="chooseClick(2)">
-        <i>{{$t('mine.vipType1')}}</i>
-        <span class="title">{{$t('mine.vipTime1')}}</span>
-        <a href="javaScript:;"
-           class="cartCheckBox"
-           :checked="secondChecked"></a>
-        <p>{{$t('mine.vipRecommend1')}}</p>
-        <div class="price">{{$t('mine.prise11')}}</div>
-        <span class="originPrice">{{$t('mine.prise12')}}</span>
+      <div class="chooseType" :class="{selected:secondChecked,normal:!secondChecked}" @click="chooseClick(2)">
+        <i>{{ $t('mine.vipType1') }}</i>
+        <span class="title">{{ $t('mine.vipTime1') }}</span>
+        <a href="javaScript:;" class="cartCheckBox" :checked="secondChecked"></a>
+        <p>{{ $t('mine.vipRecommend1') }}</p>
+        <div class="price">{{ $t('mine.prise11') }}</div>
+        <span class="originPrice">{{ $t('mine.prise12') }}</span>
       </div>
     </div>
     <!-- 支付方式 -->
     <!-- 支付方式选择 -->
     <van-radio-group v-model="radio">
       <van-cell-group :title="$t('mine.payMethod')">
-        <van-cell clickable
-                  @click="radio = '1'">
+        <van-cell clickable @click="radio = '1'">
           <template slot="title">
-            <img src="./../../../../images/order/wx.png"
-                 alt=""
-                 width="25px"
-                 height="25px"
-                 style=" vertical-align: middle;padding-right:5px">
-            <span>{{$t('mine.wechatPay')}}</span>
+            <img src="./../../../../images/order/wx.png" alt="" width="25px" height="25px" style=" vertical-align: middle;padding-right:5px">
+            <span>{{ $t('mine.wechatPay') }}</span>
           </template>
-          <van-radio slot="right-icon"
-                     name="1"
-                     checked-color="#07c160" />
+          <van-radio slot="right-icon" name="1" checked-color="#07c160" />
         </van-cell>
-        <van-cell clickable
-                  @click="radio = '2'">
+        <van-cell clickable @click="radio = '2'">
           <template slot="title">
-            <img src="./../../../../images/order/zfb.png"
-                 alt=""
-                 width="25px"
-                 height="25px"
-                 style=" vertical-align: middle;padding-right:5px">
-            <span>{{$t('mine.aliPay')}}</span>
+            <img src="./../../../../images/order/zfb.png" alt="" width="25px" height="25px" style=" vertical-align: middle;padding-right:5px">
+            <span>{{ $t('mine.aliPay') }}</span>
           </template>
-          <van-radio slot="right-icon"
-                     name="2"
-                     checked-color="#07c160" />
+          <van-radio slot="right-icon" name="2" checked-color="#07c160" />
         </van-cell>
-        <van-cell clickable
-                  @click="radio = '3'">
+        <van-cell clickable @click="radio = '3'">
           <template slot="title">
-            <img src="./../../../../images/order/hb.png"
-                 alt=""
-                 width="25px"
-                 height="25px"
-                 style=" vertical-align: middle;padding-right:5px">
-            <span>{{$t('mine.huabeiPay')}}</span>
+            <img src="./../../../../images/order/hb.png" alt="" width="25px" height="25px" style=" vertical-align: middle;padding-right:5px">
+            <span>{{ $t('mine.huabeiPay') }}</span>
           </template>
-          <van-radio slot="right-icon"
-                     name="3"
-                     checked-color="#07c160" />
+          <van-radio slot="right-icon" name="3" checked-color="#07c160" />
         </van-cell>
       </van-cell-group>
     </van-radio-group>
 
-    <div class="payButton"
-         @click="clickPay">{{$t('mine.payImmeatally')}}</div>
+    <div class="payButton" @click="clickPay">{{ $t('mine.payImmeatally') }}</div>
   </div>
 </template>
 
