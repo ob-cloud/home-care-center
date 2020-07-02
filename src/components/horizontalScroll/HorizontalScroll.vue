@@ -1,15 +1,12 @@
 <template>
   <div id="horizontalScroll">
     <!-- 水平滑动 -->
-    <div class="menuTitleWrapper"
-         ref="menuTitleWrapper">
+    <div class="menuTitleWrapper" ref="menuTitleWrapper">
       <ul ref="menuTitleUlContent">
-        <li class="menuTitles"
-            :class="{selected:currentSubTitle === index}"
-            v-for="(item,index) in menuTitlesArray"
-            :key="item.id"
-            ref="menuTitles"
-            @click="menuTitleClick(index)">
+        <li
+          class="menuTitles" :class="{selected:currentSubTitle === index}" v-for="(item,index) in menuTitlesArray"
+          :key="item.id" ref="menuTitles" @click="menuTitleClick(index)"
+        >
           {{item.name}}
         </li>
       </ul>
@@ -17,20 +14,23 @@
   </div>
 </template>
 
-<script type="text/javascript">
+<script>
 import BScroll from 'better-scroll'
 
 export default {
   props: {
     // 接受父组件传递的数据
-    menuTitlesArray: Array
+    menuTitlesArray: {
+      type: Array,
+      default: () => []
+    }
   },
-  mounted () {
+  mounted() {
     this.$nextTick(() => {
-      this._initHorizontalScroll();
+      this._initHorizontalScroll()
     });
   },
-  data () {
+  data() {
     return {
       currentSubTitle: 0,
       isShowDropMenu: true,
@@ -42,14 +42,14 @@ export default {
   },
   methods: {
     // 初始化滚动
-    _initHorizontalScroll () {
+    _initHorizontalScroll() {
       let contentWrapperWidth = 0;
       let el = this.$refs.menuTitles;
       for (let i = 0; i < el.length; i++) {
-        contentWrapperWidth += el[i].clientWidth;
+        contentWrapperWidth += el[i].clientWidth
       }
       // 1.1给ul设置宽度,保证可以横向滚动
-      this.$refs.menuTitleUlContent.style.width = contentWrapperWidth + 'px';
+      this.$refs.menuTitleUlContent.style.width = contentWrapperWidth + 'px'
       if (!this.horizontalScroll) {
         this.horizontalScroll = new BScroll('.menuTitleWrapper', {
           probeType: 3,
@@ -58,15 +58,15 @@ export default {
           scrollX: true,
         });
       } else {
-        this.horizontalScroll.refresh();
+        this.horizontalScroll.refresh()
       }
     },
     // 点击标题
-    menuTitleClick (index) {
+    menuTitleClick(index) {
       // 让横向滑动到合适位置
-      this.currentSubTitle = index;
-      let el = this.$refs.menuTitles[index];
-      this.horizontalScroll.scrollToElement(el, 500);
+      this.currentSubTitle = index
+      let el = this.$refs.menuTitles[index]
+      this.horizontalScroll.scrollToElement(el, 500)
     }
   }
 }

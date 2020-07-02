@@ -1,3 +1,7 @@
+/**
+ * 环境配置文件
+ */
+
 const BASE_PREFIX = './nurse'
 const LOCAL_BASE_API = './nurse'
 const DEV_BASE_API = BASE_PREFIX

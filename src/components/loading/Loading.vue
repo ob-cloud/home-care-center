@@ -1,28 +1,26 @@
- <template>
+
+<template>
   <div class="loading_container">
-    <div class="load_img"
-         :style="{backgroundPositionY: -(positionY%7)*2.5 + 'rem'}">
-    </div>
-    <svg-icon iconClass="loading"
-              style="width:1.5rem;height:1.5rem" />
+    <div class="load_img" :style="{backgroundPositionY: -(positionY%7)*2.5 + 'rem'}"></div>
+    <svg-icon iconClass="loading" style="width:1.5rem;height:1.5rem" />
   </div>
 </template>
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       positionY: 0,
       timer: null,
     }
   },
-  mounted () {
+  mounted() {
     this.timer = setInterval(() => {
-      this.positionY++;
+      this.positionY++
     }, 600)
   },
-  beforeDestroy () {
-    clearInterval(this.timer);
+  beforeDestroy() {
+    clearInterval(this.timer)
   }
 }
 </script>

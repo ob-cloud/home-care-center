@@ -20,6 +20,7 @@ module.exports = {
     'vue/multiline-html-element-content-newline': 0,
     "vue/mustache-interpolation-spacing": 0,
     "no-unused-vars": 0,
-    'comma-dangle': 0
+    'comma-dangle': 0,
+    "no-extra-boolean-cast": 0
   }
 }

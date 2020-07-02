@@ -1,6 +1,4 @@
-import {
-  getLanguage
-} from "@/i18n/index";
+import { getLanguage } from "@/i18n/index"
 export default {
   // 购物车数据
   shopCart: {},

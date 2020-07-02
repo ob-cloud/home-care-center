@@ -1,10 +1,12 @@
 <template>
   <div id="dashboard">
-    <van-tabbar v-model="active" :safe-area-inset-bottom=true class="active_tab" active-color="#75a342">
+    <van-tabbar v-model="active" :safe-area-inset-bottom="true" class="active_tab" active-color="#75a342">
       <!-- 给购物车的Tabbar加个ID 方便做加入购物车的小球动画 -->
-      <van-tabbar-item v-for="(item,index) in tabbars" :key="index" :id="index==3?'buycar':''"
-        @click="tab(index,item.name)" :info="item.name=='cart'?goodsNum:''">
-        <span :class="currIndex == index ? active:''">{{ item.title }}</span>
+      <van-tabbar-item
+        v-for="(item,index) in tabbars" :key="index" :id="index == 3 ? 'buycar' : ''"
+        @click="tab(index,item.name)" :info="item.name === 'cart' ? goodsNum : ''"
+      >
+        <span :class="currIndex == index ? active : ''">{{ item.title }}</span>
         <template slot="icon" slot-scope="props">
           <img :src="props.active ? item.active : item.normal">
         </template>
@@ -16,7 +18,6 @@
       <router-view v-if="$route.meta.keepAlive" />
     </keep-alive>
     <router-view v-if="!$route.meta.keepAlive" />
-
   </div>
 </template>
 
@@ -25,11 +26,9 @@ import { setLocalStore, getLocalStore } from '../../config/global.js'
 import { mapState, mapMutations, mapActions } from 'vuex'
 export default {
   name: "DashBoard",
-  mounted () {
-  },
   created () {
     //通过路由跳转绑定Tabbar的选中
-    this.tabbarSelected(this.$route.name);
+    this.tabbarSelected(this.$route.name)
   },
   watch: {
     // 监听路由变化,保证路由跳转Tabbar选中正常
@@ -48,34 +47,34 @@ export default {
         {
           name: "home",
           title: '首页',
-          normal: require("@/images/tabbar/home_default.png"),
-          active: require("@/images/tabbar/home_selected.png")
+          normal: require("@/assets/images/tabbar/home_default.png"),
+          active: require("@/assets/images/tabbar/home_selected.png")
         },
         {
           name: "service",
           title: '服务',
-          normal: require("@/images/tabbar/category_default.png"),
-          active: require("@/images/tabbar/category_selected.png")
+          normal: require("@/assets/images/tabbar/category_default.png"),
+          active: require("@/assets/images/tabbar/category_selected.png")
         },
         {
           name: "shop",
           title: '商店',
-          normal: require("@/images/tabbar/eat_default.png"),
-          active: require("@/images/tabbar/eat_selected.png"),
+          normal: require("@/assets/images/tabbar/eat_default.png"),
+          active: require("@/assets/images/tabbar/eat_selected.png"),
         },
         {
 
           name: "cart",
           title: '购物车',
-          normal: require("@/images/tabbar/shoppingcart_default.png"),
-          active: require("@/images/tabbar/shoppingcart_selected.png"),
+          normal: require("@/assets/images/tabbar/shoppingcart_default.png"),
+          active: require("@/assets/images/tabbar/shoppingcart_selected.png"),
           num: 5
         },
         {
           name: "mine",
           title: '我的',
-          normal: require("@/images/tabbar/mine_default.png"),
-          active: require("@/images/tabbar/mine_selected.png")
+          normal: require("@/assets/images/tabbar/mine_default.png"),
+          active: require("@/assets/images/tabbar/mine_selected.png")
         }
       ]
     };
@@ -88,13 +87,11 @@ export default {
   computed: {
     ...mapState(['shopCart'], ['userInfo']),
     goodsNum () {
-      let num = 0;
+      let num = 0
       Object.values(this.shopCart).forEach((goods, index) => {
-        num += goods.num;
-      });
-      if (num > 0) {
-        return num;
-      }
+        num += goods.num
+      })
+      return num
     }
   },
   methods: {
@@ -102,8 +99,8 @@ export default {
     ...mapMutations(['INIT_SHOP_CART', 'INIT_USER_INFO']),
     // 1.点击tabbar触发的方法
     tab (index, val) {
-      this.currIndex = index;
-      this.$router.push(val);
+      this.currIndex = index
+      this.$router.push(val)
     },
     // 2.初始化购物车数据
     _initData () {
